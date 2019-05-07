@@ -100,23 +100,31 @@ So we get:
 A generalization to n indices leads to equation (\ref{EpsilonDet}).
 %
 \subsection{Useful example}
-Its very convenient to write vector equations in tensor notation.
+Its very convenient to write vector equations in tensor notation. One important fact to notice
+is that the Kronecker-Delta acts as an index exchange operator.
+\begin{equation}
+    \delta_i^j\;a^i = a^j \quad \text{because it leaves only terms where} \; i = j
+\end{equation}
+So in a sense the epsilon symbol and the Kronecker-Delta are tools for index shuffling.
+More often than not called index gymnastics.
 \begin{equation}
     \begin{aligned}
         \mathbf{a} \cdot \mathbf{b} &= a^i b^i \equiv \sum_{i=1}^n a^i b^i  \\
         \mathbf{a} \times \mathbf{b} &= \epsilon_{ijk} \; a^i b^j \; \mathbf{e}_k \\
+        [\mathbf{a} \times \mathbf{b}]^k &= \epsilon_{ijk} \; a^i b^j \\
         (\mathbf{a} \times \mathbf{b}) \times \mathbf{c} &= \epsilon_{klm} \; (\epsilon_{ijk} \; a^i b^j) c^l \; \mathbf{e}_m \\
             &= \epsilon_{klm} \; \epsilon_{ijk} \; a^i b^j c^l \; \mathbf{e}_m \\
             &= (\delta_{il}\;\delta_{jm} - \delta_{jl}\;\delta_{im}) a^i b^j c^l \; \mathbf{e}_m \\
-            &= \delta_{il}\;\delta_{jm}\;a^i b^j c^l - \delta_{jl}\;\delta_{im} a^i b^j c^l \; \mathbf{e}_m \\
-            &= (\delta_{il}\;a^i)\;(\delta_{jm}\;b^j)\;c^l - (\delta_{jl}\;b^j)\;(\delta_{im} a^i)\;c^l \; \mathbf{e}_m \\
-            &= a^l\;b^m\;c^l - b^l\;a^m\;c^l \; \mathbf{e}_m \\
+            &= (\delta_{il}\;\delta_{jm}\;a^i b^j c^l - \delta_{jl}\;\delta_{im} a^i b^j c^l) \; \mathbf{e}_m \\
+            & \text{Now we group fitting indices together.} \\
+            &= [(\delta_{il}\;a^i)\;(\delta_{jm}\;b^j)\;c^l - (\delta_{jl}\;b^j)\;(\delta_{im} a^i)\;c^l] \; \mathbf{e}_m \\
+            &= (a^l\;b^m\;c^l - b^l\;a^m\;c^l) \; \mathbf{e}_m \\
             &= (\mathbf{a}\mathbf{c})\mathbf{b} - (\mathbf{b}\mathbf{c})\mathbf{a} \\
     \end{aligned}
 \end{equation}
-Note: It does not make any difference for the epsilon symbol if we write indices up or down. We would have
-to multiply the components by the metric tensor or its inverse respectively, if we decided to do so, which 
-is in both cases the identity matrix.
+Note: It does not make any difference for the epsilon symbol or the Kronecker-Delta if we 
+write indices up or down. We would have to multiply the components by the metric tensor or 
+its inverse respectively, if we decided to do so, which is in both cases the identity matrix.
 \paragraph{}
 Happy index gymnastics!
 \end{document}
