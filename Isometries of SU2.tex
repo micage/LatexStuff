@@ -1,0 +1,329 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+
+\newcommand{\vvv}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\newcommand{\qt}[2]{\vvv{#1 \\ #2}}
+
+\usepackage{mathtools}
+\usepackage{tensor}
+\usepackage{bbold}
+\usepackage{bm}
+
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={160mm,250mm},
+    left=20mm,
+    top=20mm,
+}
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+
+
+\begin{document}
+\section{Intro}
+
+\subsection{Isometries of sesquilinear metrics}
+Consider a vector space $V$ with a basis $B = \{\mathbf{e}_1, \mathbf{e}_2, ..., \mathbf{e}_k\}$ 
+and its corresponding metric $g_{ij} = \mathbf{e}_i \cdot \mathbf{e}_j$.
+After a change of the Basis $B$ to a Basis $B'$ this becomes
+\begin{equation} 
+    g_{ij}' 
+    = \mathbf{e}_i' \cdot \mathbf{e}_j' 
+    = \overline{A\indices{^k_i}} \,\mathbf{e}_k \cdot \mathbf{e}_l \, A\indices{^l_j}
+    = \overline{A\indices{^l_j}} \, \mathbf{g}_{kl} \, A\indices{^k_i}
+\end{equation}
+Note: In case of the field of scalars of B being real or complex, multiplication is 
+commutative. In case of quaternions, $F=\mathbb{H}$, this is not the case. \\
+If $F=\mathbb{R}$ the complex conjugate is a real number, so we get a bilinear metric. \\
+\\
+Let's assume that we are looking for transformations $A$ that keep certain properties 
+of $V$ invariant under transformations of its basis. For example if we were to look 
+for transformations that preserves volume we would demand the determinant of the basis 
+matrix being unchanged, that is $\epsilon_{ijk}\mathbf{e}_i'\mathbf{e}_j'\mathbf{e}_k'
+= \epsilon_{ijk}\mathbf{e}_i\mathbf{e}_j\mathbf{e}_k$. \\
+\\
+If we are interested in transformations that keeps the metric unchanged, in other words 
+transformations that keeps inner products unchanged, we get
+\begin{equation}
+    g_{ij}' = g_{ij} \quad
+    g_{ij} = \overline{A\indices{^l_j}} \, g_{kl} \, A\indices{^k_i}
+\end{equation}
+Multiplying both sides with the inverse metric tensor $g^{jl}$ gives us
+\begin{equation}
+    \delta\indices{_i^j} = \overline{A\indices{^k_i}} A\indices{^j_k}
+\end{equation}
+In matrix notation this is just $A^\dagger A = \mathbb{1}$. Where $A^\dagger$ is the complex
+conjugate transpose of $A$. \\
+%
+\subsection{Quaternions}
+To get a grasp of of what this means we consider a 2-dimensional complex vector space.
+Let a, b, c, d $\in{\mathbb{C}}$ and separate their real and complex part e.g. $a = a_r + ia_i$.
+Where $a_r, a_i \in{\mathbb{R}}$. This is the most general transformation:
+\begin{equation} A =
+    \begin{bmatrix}
+        a_r + ia_i & b_r + ib_i \\
+        c_r + ic_i & d_r + id_i
+    \end{bmatrix}    
+\end{equation}
+The condition $A^\dagger A = \mathbb{1}$ leads to $A^\dagger = A^{-1}$, so
+\begin{equation}
+    \begin{bmatrix}
+        a_r - ia_i & c_r - ic_i \\
+        b_r - ib_i & d_r - id_i
+    \end{bmatrix} =
+    \begin{bmatrix}
+        d_r + id_i & -b_r - ib_i \\
+        -c_r - ic_i & a_r + ia_i
+    \end{bmatrix}    
+\end{equation}
+Comparing the matrix entries one by one, we get the most general form of a matrix
+satisfying the above equation. We will however call U the set of matrices $A$ 
+satisfying this condition (U stands for unitary).
+\begin{equation} A =
+    \begin{Bmatrix}A|\begin{bmatrix}
+        a_r - ia_i & -b_r - ib_i \\
+        b_r - ib_i & a_r + ia_i
+    \end{bmatrix}\end{Bmatrix}
+\end{equation}
+We can write this as
+\begin{equation} A = a_r
+    \begin{bmatrix}
+        1 & 0 \\ 0 & 1
+    \end{bmatrix} + a_i
+    \begin{bmatrix}
+        -i & 0 \\ 0 & i
+    \end{bmatrix} + b_r
+    \begin{bmatrix}
+        0 & -1 \\ 1 & 0
+    \end{bmatrix} + b_i
+    \begin{bmatrix}
+        0 & -i \\ -i & 0
+    \end{bmatrix}
+\end{equation}
+\begin{equation}
+    \bm{\sigma}_0 \equiv \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \quad
+    \bm{\sigma}_1 \equiv \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix} \quad 
+    \bm{\sigma}_2 \equiv \begin{bmatrix} -i & 0 \\ 0 & i \end{bmatrix} \quad
+    \bm{\sigma}_3 \equiv \begin{bmatrix} 0 & -i \\ -i & 0 \end{bmatrix}
+\end{equation} \\
+With the matrices defined this way an element of $\mathbf{U}$ has the form 
+$A=a^k \bm{\sigma}_k$. 
+The set of matrices satisfying $A^\dagger A = \mathbb{1}$ build a subspace of the 
+4-dimensional space of general complex $2\times2$-matrices. In fact they also are
+a subgroup. To  show this their products have to meet certain conditions that define 
+a group:
+\begin{subequations} \label{"GroupDefinition"}
+    \begin{align}
+        \text{Closure:}\quad& A*B \in \mathbf{U} \\
+        \text{Identity:}\quad& A*\mathbb{1} = \mathbb{1} * A = A \\
+        \text{Inverse:}\quad& A*B = B*A = \mathbb{1} \\
+        \text{Associativity:}\quad& A*(B*C)=(A*B)*C
+    \end{align}
+\end{subequations}
+To show that we first build the products of the base matrices:
+\begin{equation}
+    \begin{aligned}
+    \bm{\sigma}_0 \cdot \bm{\sigma}_i &= \bm{\sigma}_i \cdot \bm{\sigma}_0 = \bm{\sigma}_i \\
+    \bm{\sigma}_1 \cdot \bm{\sigma}_2 &= \bm{\sigma}_3, \quad
+    \bm{\sigma}_2 \cdot \bm{\sigma}_3 = \bm{\sigma}_1, \quad
+    \bm{\sigma}_3 \cdot \bm{\sigma}_1 = \bm{\sigma}_2 \\
+    \bm{\sigma}_1 \cdot \bm{\sigma}_3 &= -\bm{\sigma}_2, \quad
+    \bm{\sigma}_2 \cdot \bm{\sigma}_1 = -\bm{\sigma}_3, \quad
+    \bm{\sigma}_3 \cdot \bm{\sigma}_2 = -\bm{\sigma}_1 \\
+    \bm{\sigma}_1 \cdot \bm{\sigma}_1 &=
+    \bm{\sigma}_2 \cdot \bm{\sigma}_2 =
+    \bm{\sigma}_3 \cdot \bm{\sigma}_3 = -\bm{\sigma}_0 \\
+    \end{aligned}
+\end{equation}
+With this results we can now multiply two arbitrary elements of U.
+\begin{equation}
+    \begin{aligned}
+        A * B &= (a^0\bm{\sigma}_0 + a^1\bm{\sigma}_1 + a^2\bm{\sigma}_2 + a^3\bm{\sigma}_3)
+        * (b^0\bm{\sigma}_0 + b^1\bm{\sigma}_1 + b^2\bm{\sigma}_2 + b^3\bm{\sigma}_3) \\
+        &=(a^0b^0 - a^1b^1 - a^2b^2 - a^3b^3)\bm{\sigma}_0 \\
+        &+(a^0b^1 + a^1b^0 + a^2b^3 - a^3b^2)\bm{\sigma}_1 \\
+        &+(a^0b^2 - a^1b^3 + a^2b^0 + a^3b^1)\bm{\sigma}_2 \\
+        &+(a^0b^3 + a^1b^2 - a^2b^1 + a^3b^0)\mathbf{\bm{\sigma}}_3
+    \end{aligned}
+\end{equation}
+We can write the coefficients $a^k$ as elements of $\mathbb{R} \times \mathbb{R}^3$,
+so dividing it into a real part and a real 3-vector part 
+$A \in \mathbb{R} \times \mathbb{R}^3, \, A := (a, \mathbf{a})$ we can write
+the product of $A$ and $B$ like this:
+\begin{equation}\label{eq:"QuatMult"}
+    A*B=(a, \mathbf{a})*(b, \mathbf{b})
+    =(ab-\mathbf{a}\mathbf{b}, a\mathbf{b}+b\mathbf{a}+\mathbf{a}\times\mathbf{b})
+\end{equation}
+The scalar parts basis is simple the identity matrix $\bm{\sigma}_0$, whereas the vector 
+parts basis is \{$\bm{\sigma}_1, \bm{\sigma}_2, \bm{\sigma}_3$\}.\\
+Obviuosly $A*B$ is an element of $U$. The identity element is $U_{id}=(1, 0)$. To find
+an inverse element we need the vector part to be zero and can then divide through the
+scalar part to make it 1.
+\begin{subequations}
+    \begin{align}
+        ab-\mathbf{a}\mathbf{b} &= 1 \quad \text{and}\\
+        a\mathbf{b}+b\mathbf{a}+\mathbf{a}\times\mathbf{b} &= 0
+    \end{align}
+\end{subequations}
+This can only be the case if $\mathbf{b} = \lambda\mathbf{a}$ which implies 
+$b=-\lambda a$, with $\lambda \in \mathbb{R}$.
+This leads to the final form of the inverse element
+\begin{equation}
+    B = A^{-1} = \frac{1}{aa+\mathbf{a}\mathbf{a}}(a, -\mathbf{a})
+\end{equation}
+Final point on our list is to check for associativity. This is a rather lengthy but
+straightforward calculation which shows that the product defined in equation 
+(\ref{eq:"QuatMult"}) is in fact also associative. Conclusion: $\mathbf{U}$ forms a subgroup
+of the general linear group $\mathbf{GL}(2, \mathbb{C})$.\\
+\\
+With this calculation rules for the coefficients of the $\bm{\sigma}$-matrices in our toolbox
+we can nearly forget about the basis they are referrring to. But we should not! Members of
+the group are complex $2\times2$-matrices that have the property $A^\dagger A = \mathbb{1}$.
+Their coefficients $q$ still refer to the basis of $\bm{\sigma}$-matrices.
+\begin{equation}
+    A=(q,\mathbf{q})=q\bm{\sigma}_0+\mathbf{q} \vec{\bm{\sigma}} \quad
+    \text{with $\vec{\bm{\sigma}} = \{ \bm{\sigma}_1, \bm{\sigma}_2, \bm{\sigma}_3 \}$}
+\end{equation}
+We should keep that in mind!
+
+\subsection{Properties of Quaternions}
+%
+\begin{equation}
+    \vvv{a \\ \mathbf{a}} * \vvv{b \\ \mathbf{b}} = 
+    \vvv{ab - \mathbf{a} \mathbf{b} \\ a\mathbf{b} + b\mathbf{a} + \mathbf{a} \times \mathbf{b}}
+    \quad 
+    \begin{aligned}
+        &\text{a, b} \in \mathbb{R} \\ \text{and } &\mathbf{a}, \mathbf{b} \in \mathbb{R}^3
+    \end{aligned}
+\end{equation}
+This equation shows that the quaternion product in general is not commutative because the 
+cross product term in the vector part will flip sign.
+
+\begin{equation} =>
+    \vvv{a \\ \mathbf{a}} * \vvv{a \\ \mathbf{-a}} = 
+    \vvv{aa + \mathbf{a} \mathbf{a} \\ a\mathbf{a} - a\mathbf{a} - \mathbf{a} \times \mathbf{a}} = \\
+    \vvv{aa + \mathbf{a} \mathbf{a} \\ \mathbf{0}}
+\end{equation}
+This is a projection onto the positive real numbers. So it's a good choice for a norm. But propose we scale 
+some $q$ by a factor $s$, this norm would become $s^2q$. Applying a square root will normalize
+this.
+\begin{equation}
+    \norm{a} = \sqrt{a\overline{a}} = \sqrt{\vvv{a \\ \mathbf{a}} * \vvv{a \\ \mathbf{-a}}}
+    = \sqrt{aa + \mathbf{a}\mathbf{a}}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        &[\vvv{a \\ \mathbf{a}} * \vvv{b \\ \mathbf{b}}] * \vvv{c \\ \mathbf{c}} = 
+        \vvv{ab - \mathbf{a} \mathbf{b} \\ a\mathbf{b} + b\mathbf{a} + \mathbf{a} \times \mathbf{b}} *  
+        \vvv{c \\ \mathbf{c}} \\ =
+        &\vvv{
+            abc - a\mathbf{b}\mathbf{c} - b\mathbf{a}\mathbf{c} - 
+            c\mathbf{a}\mathbf{b} - (\mathbf{a} \times \mathbf{b})\mathbf{c} \\
+            (ab - \mathbf{a}\mathbf{b})\mathbf{c} +
+            (ac + \mathbf{a}\mathbf{c})\mathbf{b} +
+            (bc - \mathbf{b}\mathbf{c})\mathbf{a} +
+            a(\mathbf{b} \times \mathbf{c}) -
+            b(\mathbf{c} \times \mathbf{a}) +
+            c(\mathbf{a} \times \mathbf{b})
+        }
+    \end{aligned}
+\end{equation}
+
+Just to show that the quaternion product is associative:
+\begin{equation}
+    \begin{aligned}
+        &\vvv{a \\ \mathbf{a}} * [\vvv{b \\ \mathbf{b}} * \vvv{c \\ \mathbf{c}}]
+        = \vvv{a \\ \mathbf{a}} *
+        \vvv{bc - \mathbf{b} \mathbf{c} \\ b\mathbf{c} + c\mathbf{b} + \mathbf{b} \times \mathbf{c}} \\
+        = &\vvv{
+            abc - a\mathbf{b}\mathbf{c} - b\mathbf{a}\mathbf{c} - 
+            c\mathbf{a}\mathbf{b} - \mathbf{a}(\mathbf{b} \times \mathbf{c}) \\
+            (ab - \mathbf{a}\mathbf{b})\mathbf{c} +
+            (ac + \mathbf{a}\mathbf{c})\mathbf{b} +
+            (bc - \mathbf{b}\mathbf{c})\mathbf{a} +
+            a(\mathbf{b} \times \mathbf{c}) -
+            b(\mathbf{c} \times \mathbf{a}) +
+            c(\mathbf{a} \times \mathbf{b})
+        }
+    \end{aligned}
+\end{equation}
+
+Now consider the third factor being the conjugate of the first:
+\begin{equation}
+    \begin{aligned}
+        &[\vvv{a \\ \mathbf{a}} * \vvv{b \\ \mathbf{b}}] * \vvv{a \\ -\mathbf{a}} = 
+        \vvv{ab - \mathbf{a} \mathbf{b} \\ a\mathbf{b} + b\mathbf{a} + \mathbf{a} \times \mathbf{b}} *  
+        \vvv{a \\ -\mathbf{a}} \\ =
+        &\vvv{
+            aba + a\mathbf{b}\mathbf{a} + b\mathbf{a}\mathbf{a} - 
+            a\mathbf{a}\mathbf{b} + (\mathbf{a} \times \mathbf{b})\mathbf{a} \\
+            (-ab + \mathbf{a}\mathbf{b})\mathbf{a} +
+            (aa - \mathbf{a}\mathbf{a})\mathbf{b} +
+            (ba + \mathbf{b}\mathbf{a})\mathbf{a} -
+            a(\mathbf{b} \times \mathbf{a}) +
+            b(\mathbf{a} \times \mathbf{a}) +
+            a(\mathbf{a} \times \mathbf{b})
+        } \\ =
+        &\vvv{
+            a^2b + b\mathbf{a}\mathbf{a} + (\mathbf{a} \times \mathbf{b})\mathbf{a} \\
+            2(\mathbf{a}\mathbf{b})\mathbf{a} + (a^2 - \mathbf{a}\mathbf{a})\mathbf{b}
+        } \\ =
+        & \vvv{
+            (a^2 + \mathbf{a}\mathbf{a})b \\
+            2(\mathbf{a}\mathbf{b})\mathbf{a} 
+            + (a^2 - \mathbf{a}\mathbf{a})\mathbf{b}
+            + 2a(\mathbf{a} \times \mathbf{b})
+        }
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        R \colon \mathbb{H} &\mapsto \mathbb{H} \\
+        b &\mapsto a(b) = ab\overline{a} \\
+        a(b) &= \vvv{
+            (a^2 + \mathbf{a}\mathbf{a})b \\
+            2(\mathbf{a}\mathbf{b})\mathbf{a} 
+            + (a^2 - \mathbf{a}\mathbf{a})\mathbf{b}
+            + 2a(\mathbf{a} \times \mathbf{b})
+        }
+    \end{aligned}   
+\end{equation}
+
+Setting $b=(0, \mathbf{b})$ gives:
+\begin{equation}
+    a(b) = \vvv{
+        0 \\
+        2(\mathbf{a}\mathbf{b})\mathbf{a} 
+        + (a^2 - \mathbf{a}\mathbf{a})\mathbf{b}
+        + 2a(\mathbf{a} \times \mathbf{b})
+    }
+\end{equation}
+
+So an element of the vector subspace is mapped to a vector of the same subspace:
+\begin{equation}
+    \begin{aligned}
+        M \colon \mathbb{R}^3 &\mapsto \mathbb{R}^3 \\
+        \mathbf{M}_a(\mathbf{b}) &= 2(\mathbf{a}\mathbf{b})\mathbf{a} 
+            + (a^2 - \mathbf{a}\mathbf{a})\mathbf{b}
+            + 2a(\mathbf{a} \times \mathbf{b})
+    \end{aligned}   
+\end{equation}
+
+
+
+\end{document}
