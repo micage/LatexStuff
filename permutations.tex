@@ -1,0 +1,121 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={160mm,250mm},
+    left=20mm,
+    top=20mm,
+}
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}   % Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+						% TeX will automatically convert eps --> pdf in pdflatex		
+
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{tensor}
+\usepackage{bm}
+
+%SetFonts
+
+
+\title{Levi-Civita-Symbol a.k.a. epsilon symbol}
+\author{Michael Gehricke}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+\newcommand{\vect}[1]   {\mathbf{#1}}
+\newcommand{\tenmix}[3] {{#1}^{#2}_{#3}}
+\newcommand{\omm}[2]    {\bm{\sigma}_{#1}\;\bm{\sigma}_{#2}}
+%\equiv
+Flipping the order of two indices in a permutation flips its sign. Doing
+it twice is equal to no flip. In a 3-number sequence a double flip is equal
+to a rotatation of the sequence, no matter wether rotated left or right.
+So if we have a sequence 1234, rotating the last three digits keeps the sign.
+We can do that two times, the third rotation gives us the original sequence.
+In order to get all odd permutations we flip the second and the third digit to
+get 1324 and rotate the last three digits to get the two remaining sequences.
+Then all rotations of 4 digits form the complete set of sequences.
+\\ \\
+Permutations of $\epsilon_{ijkl}$ that are not zero.
+\begin{equation}
+    \begin{matrix}
+          1  &   1  &   1  &&  -1  &  -1  &  -1  \\
+        1234 & 1342 & 1423 && 1324 & 1243 & 1432 \\
+        2341 & 2134 & 2314 && 2413 & 2431 & 2143 \\
+        3412 & 3421 & 3142 && 3241 & 3124 & 3214 \\
+        4123 & 4213 & 4231 && 4132 & 4312 & 4321
+    \end{matrix}
+\end{equation}
+$\bm{\sigma}$-matrices:
+\begin{equation}
+\bm{\sigma}_1 \equiv \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \quad
+\bm{\sigma}_2 \equiv \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix} \quad 
+\bm{\sigma}_3 \equiv \begin{bmatrix} -i & 0 \\ 0 & i \end{bmatrix} \quad
+\bm{\sigma}_4 \equiv \begin{bmatrix} 0 & -i \\ -i & 0 \end{bmatrix}
+\end{equation} \\
+Here is the multiplication table for the $\bm{\sigma}$-matrices:
+\begin{equation} \bm{\sigma}_i \bm{\sigma}_j =
+    \begin{pmatrix}
+        \bm{\sigma}_1 &\bm{\sigma}_2 &  \bm{\sigma}_3 &  \bm{\sigma}_4 \\
+        \bm{\sigma}_2 &-\bm{\sigma}_1 &  \bm{\sigma}_4 & -\bm{\sigma}_3 \\
+        \bm{\sigma}_3 &-\bm{\sigma}_4 & -\bm{\sigma}_1 &  \bm{\sigma}_2 \\
+        \bm{\sigma}_4 &\bm{\sigma}_3 & -\bm{\sigma}_2 & -\bm{\sigma}_1 \\
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        \Sigma_{ij}
+        &= \epsilon_{ijkl} \; \bm{\sigma}_k \bm{\sigma}_l \\
+        &=
+        \begin{pmatrix}
+            0                     &  \omm{3}{4}-\omm{4}{3}  &  \omm{4}{2}-\omm{2}{4}  &  \omm{2}{3}-\omm{3}{2} \\
+            \omm{3}{4}-\omm{4}{3} &  0                      &  \omm{4}{1}+\omm{1}{4}  &-(\omm{1}{3}+\omm{3}{1}) \\
+            \omm{4}{2}-\omm{2}{4} &-(\omm{4}{1}+\omm{1}{4}) &  0                      &  \omm{1}{2}+\omm{2}{1} \\
+            \omm{2}{3}-\omm{3}{2} &  \omm{1}{3}+\omm{3}{1}  &-(\omm{1}{2}+\omm{2}{1}) &  0
+        \end{pmatrix} \\
+        &=
+        \begin{pmatrix}
+            0              &  2\bm{\sigma}_2  &  2\bm{\sigma}_3  &  2\bm{\sigma}_4 \\
+            2\bm{\sigma}_2 &  0               &  2\bm{\sigma}_4  & -2\bm{\sigma}_3 \\
+            2\bm{\sigma}_3 & -2\bm{\sigma}_4  &  0               &  2\bm{\sigma}_2 \\
+            2\bm{\sigma}_4 &  2\bm{\sigma}_3  & -2\bm{\sigma}_2  &  0
+        \end{pmatrix} \\
+        &= \frac{1}{2} \bm{\sigma}_k \bm{\sigma}_l - 
+        \begin{pmatrix}
+            -1 & 0  & 0  & 0 \\
+             0 & 1  & 0  & 0 \\
+             0 & 0  & 1  & 0 \\
+             0 & 0  & 0  & 1
+        \end{pmatrix} \bm{\sigma}_1 \\
+    \end{aligned}
+\end{equation}
+%
+We obtain an interesting result:
+\begin{equation} \bm{\sigma}_i \bm{\sigma}_j = 
+    2 \; \epsilon_{ijkl} \; \bm{\sigma}_k \bm{\sigma}_l 
+    +
+    \begin{pmatrix}
+        -1 & 0  & 0  & 0 \\
+         0 & 1  & 0  & 0 \\
+         0 & 0  & 1  & 0 \\
+         0 & 0  & 0  & 1
+    \end{pmatrix} \bm{\sigma}_1 \\
+\end{equation}
+%
+For the actual product of two arbitrary elements of $U(2)$ we get
+\begin{equation}
+    a^i\bm{\sigma}_i b^j\bm{\sigma}_j = 
+    a^i a^j
+    \begin{bmatrix}
+        2 \; \epsilon_{ijkl} \; \bm{\sigma}_k \bm{\sigma}_l +
+        \begin{pmatrix}
+            -1 & 0  & 0  & 0 \\
+             0 & 1  & 0  & 0 \\
+             0 & 0  & 1  & 0 \\
+             0 & 0  & 0  & 1
+        \end{pmatrix} \bm{\sigma}_1 \\
+    \end{bmatrix}
+\end{equation}
+\end{document}

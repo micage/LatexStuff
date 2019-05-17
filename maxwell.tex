@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[showframe]{geometry}
+\usepackage[leqno]{mathtools}
+\usepackage{chngcntr}
+\counterwithin{equation}{section}
+\usepackage[roman, thin, thinp, thinc]{esdiff}
+
+\begin{document}
+
+\setcounter{section}{1}
+\texttt{Comments left-aligned: }
+
+\begin{equation}
+    \begin{alignedat}{3}
+        & \hskip8em &\diffp{\mathcal D}{t}& = ∇ × \mathcal H & \hskip8em &\text{\rlap{(Loi de Faraday)}} \\[0.5ex]
+        & & \diffp{\mathcal B}{t}& = -∇ × \mathcal E & &\text{\rlap{(Loi d'Ampère)}} \\[0.5ex]
+        &\vphantom{\diffp{\mathcal B}{t}} &∇ · \mathcal B & =0 & &\text{\rlap{(Loi de Gauss)}} \\[0.5ex]
+        &\vphantom{\diffp{\mathcal B}{t}} & ∇ · \mathcal D & =0 & &\text{\rlap{(Loi de Coulomb)}}
+    \end{alignedat}
+\end{equation}
+\vskip0.5cm
+
+\texttt{Comments right-aligned: }
+\begin{equation}
+    \begin{alignedat}{3}
+        & \hskip14em &\diffp{\mathcal D}{t}& = ∇ × \mathcal H & \hskip14em&\text{\llap{(Loi de Faraday)}} \\[0.5ex]
+        & & \diffp{\mathcal B}{t}& = -∇ × \mathcal E &&\text{\llap{(Loi d'Ampère)}} \\[0.5ex]
+        &\vphantom{\diffp{\mathcal B}{t}} &∇ · \mathcal B & =0 && \text{\llap{(Loi de Gauss)}}\\[0.5ex]
+        &\vphantom{\diffp{\mathcal B}{t}} & ∇ · \mathcal D & =0 &&\text{\llap{(Loi de Coulomb)}}
+    \end{alignedat}
+\end{equation}
+\vskip0.5cm
+
+
+\texttt{With flalign, comments right-aligned: }
+
+\begin{flalign}
+    & &\diffp{\mathcal D}{t}& = ∇ × \mathcal H &&\text{\llap{(Loi de Faraday)}} \\[0.5ex]
+    & & \diffp{\mathcal B}{t}& = -∇ × \mathcal E &&\text{\llap{(Loi d'Ampère)}} \\[0.5ex]
+    &\vphantom{\diffp{\mathcal B}{t}} &∇ · \mathcal B & =0 && \text{\llap{(Loi de Gauss)}}\\[0.5ex]
+    &\vphantom{\diffp{\mathcal B}{t}} & ∇ · \mathcal D & =0 &&\text{\llap{(Loi de Coulomb)}}
+\end{flalign}
+%
+\begin{equation}
+    \begin{bmatrix}
+        a & \mathbb{a}
+    \end{bmatrix}
+\end{equation}
+
+
+\end{document} 

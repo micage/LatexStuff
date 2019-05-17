@@ -30,6 +30,7 @@
 \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
 \makeatother
 
+\newcommand{\vect}[1]{\mathbf{#1}}
 
 
 \begin{document}
@@ -148,6 +149,16 @@ To show that we first build the products of the base matrices:
     \bm{\sigma}_3 \cdot \bm{\sigma}_3 = -\bm{\sigma}_0 \\
     \end{aligned}
 \end{equation}
+Here is the multiplication table:
+\begin{equation}
+    \begin{matrix}
+        \bm{\sigma}_0 &  \bm{\sigma}_1 &  \bm{\sigma}_2 &  \bm{\sigma}_3 \\
+        \bm{\sigma}_1 & -\bm{\sigma}_0 &  \bm{\sigma}_3 & -\bm{\sigma}_2 \\
+        \bm{\sigma}_2 & -\bm{\sigma}_3 & -\bm{\sigma}_0 &  \bm{\sigma}_1 \\
+        \bm{\sigma}_3 &  \bm{\sigma}_2 & -\bm{\sigma}_1 & -\bm{\sigma}_0 \\
+    \end{matrix}
+\end{equation}
+    
 With this results we can now multiply two arbitrary elements of U.
 \begin{equation}
     \begin{aligned}

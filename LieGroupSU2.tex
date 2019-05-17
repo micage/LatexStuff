@@ -126,14 +126,14 @@ Setting the symbols $\vect{e}$ (identity), $\vect{i}$, $\vect{j}$ and $\vect{k}$
 ,\quad
 \vect{e_1} \equiv
 \begin{bmatrix}
-	0 & -i \\
-	-i & 0
+	0 & -1 \\
+	1 & 0
 \end{bmatrix}
 ,\quad
 \vect{e_2} \equiv
 \begin{bmatrix}
-	0 & -i \\
-	-i & 0
+	-i & 0 \\
+	0 & i
 \end{bmatrix}
 ,\quad
 \vect{e_3} \equiv
@@ -165,9 +165,9 @@ A product of to element $\vect{a} = a^i \vect{e}_i$ and $\vect{b} = b^j \vect{e}
 \begin{align*}
 	\vect{a} &= a^i \vect{e_i} \cdot a^j \vect{e_j} \\
 	&= (a_0b_0 - a_1b_1 - a_2b_2 - a_3b_3) \vect{e_0} \\
-	&+ (a_1b_0 - a_0b_1 + a_2b_2 - a_3b_3) \vect{e_1} \\
-	&+ (a_2b_0 - a_1b_1 + a_2b_2 - a_3b_3) \vect{e_2} \\
-	&+ (a_3b_0 + a_1b_2 - a_2b_1 - a_3b_3) \vect{e_3} 
+	&+ (a_0b_1 + a_1b_0 + a_2b_3 - a_3b_2) \vect{e_1} \\
+	&+ (a_0b_2 - a_1b_3 + a_2b_0 + a_3b_1) \vect{e_2} \\
+	&+ (a_0b_3 + a_1b_2 - a_2b_1 + a_3b_0) \vect{e_3} 
 \end{align*}
 \end{subequations}
 
@@ -181,7 +181,7 @@ Maxwell's equations:
 \end{align}
 \end{subequations}
 %
-\begin{equation} \vect{A\indices{^ij}} =
+\begin{equation} \vect{A\indices{^i^j}} =
 \begin{bmatrix}
 	1 & 2 & 3 \\
 	3 & 4 & 5 \\
@@ -189,12 +189,13 @@ Maxwell's equations:
 \end{bmatrix}
 \end{equation}
 %
+\[
+	\begin{matrix} % or pmatrix or bmatrix or Bmatrix or ...
+		a & b \\
+		c & d \\
+	\end{matrix}
+\]
 
-
-   \begin{matrix} % or pmatrix or bmatrix or Bmatrix or ...
-      a & b \\
-      c & d \\
-   \end{matrix}
 %
 
 \end{document}  
