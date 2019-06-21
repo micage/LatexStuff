@@ -1,0 +1,76 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+
+\newcommand{\vvv}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\newcommand{\qt}[2]{\vvv{#1 \\ #2}}
+
+\usepackage{mathtools}
+\usepackage{tensor}
+\usepackage{bbold}
+\usepackage{bm}
+
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={160mm,250mm},
+    left=20mm,
+    top=20mm,
+}
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\newcommand{\vect}[1]{\mathbf{#1}}
+
+
+\begin{document}
+\section{Intro}
+
+\begin{equation}
+    \partial_i (A^j \vect{e}_j) = \partial_i A^j \vect{e}_j + A^j \partial_i \vect{e}_j
+\end{equation}
+
+\begin{equation}
+    \partial_i \vect{e}_j \equiv \tensor{\Gamma}{^k_{ij}} \vect{e}_k \quad \text{Definition}
+\end{equation}
+
+\begin{equation}
+    \nabla_i(A^j) = \partial_i A^j + A^m \tensor{\Gamma}{^j_{im}}
+\end{equation}
+
+\begin{subequations}
+    \begin{align}
+        \nabla_i A^j = \partial_i A^j + \tensor{\Gamma}{^j_{im}} A^m \\
+        \nabla_i B_j = \partial_i B_j - \tensor{\Gamma}{^m_{ij}} B_m 
+    \end{align}
+\end{subequations}
+
+\begin{subequations}
+    \begin{align}
+        \nabla_i(A^j B_k) 
+        &= \nabla_i A^j B_k + A^j \nabla_i B_k \\
+        &= \partial_i(A^j B_k) + \tensor{\Gamma}{^j_{im}} A^m B_k - \tensor{\Gamma}{^m_{ik}} A^j B_m \\
+        &= \partial_i A^j B_k + A^j \partial_i B_k + \tensor{\Gamma}{^j_{im}} A^m B_k - \tensor{\Gamma}{^m_{ik}} A^j B_m \\
+    \end{align}
+\end{subequations}
+Replacing $A^j$ by $\nabla_j$ leads to
+\begin{subequations}
+    \begin{align}
+        \nabla_i(\nabla_j B_k) 
+        &= \partial_i \nabla_j B_k + \nabla_j \partial_i B_k + \tensor{\Gamma}{^j_{im}} \nabla_m B_k - \tensor{\Gamma}{^m_{ik}} \nabla_j B_m \\
+        &= \partial_i (\partial_j B_k - \tensor{\Gamma}{^m_{jk}}  B_m) + \nabla_j \partial_i B_k + \tensor{\Gamma}{^j_{im}} \nabla_m B_k - \tensor{\Gamma}{^m_{ik}} \nabla_j B_m \\
+    \end{align}
+\end{subequations}
+
+
+\end{document}
